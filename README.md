@@ -1,43 +1,28 @@
-<p align="center"><img src="https://statamic.com/assets/branding/Statamic-Logo+Wordmark-Rad.svg" width="400" alt="Statamic Logo" /></p>
+# Repro for Statamic Issue #10938
 
-## About Statamic
+- Reproduction repro for issue [statamic/cms#10938](statamic/cms/issues/10938)
+- Updating a term's slug will not update references to that term in entries
 
-Statamic is the flat-first, Laravel + Git powered CMS designed for building beautiful, easy to manage websites.
+## Superuser
 
-> [!NOTE]
-> This repository contains the code for a fresh Statamic project that is installed via the Statamic CLI tool.
->
-> The code for the Statamic Composer package itself can be found at the [Statamic core package repository][cms-repo].
+- Email: admin@admin.net
+- Password: admin
 
+## Reproducing the error
 
-## Learning Statamic
+1. Edit entry `Page` in `pages` collection
+2. Ensure the tag is linked and valid: `Tag`
+3. Edit term `Tag` in `tags` taxonomy
+4. Update the slug field to `tag2` (or some other value) and save
+5. Reload the `page` entry
+6. The tag should now show up as invalid in red (`tags::tag`)
 
-Statamic has extensive [documentation][docs]. We dedicate a significant amount of time and energy every day to improving them, so if something is unclear, feel free to open issues for anything you find confusing or incomplete. We are happy to consider anything you feel will make the docs and CMS better.
+## Screenshots
 
-## Support
+### Before updating the term slug
 
-We provide official developer support on [Statamic Pro](https://statamic.com/pricing) projects. Community-driven support is available on the [forum](https://statamic.com/forum) and in [Discord][discord].
+![Before](./screenshots/before.png)
 
+### After updating the term slug
 
-## Contributing
-
-Thank you for considering contributing to Statamic! We simply ask that you review the [contribution guide][contribution] before you open issues or send pull requests.
-
-
-## Code of Conduct
-
-In order to ensure that the Statamic community is welcoming to all and generally a rad place to belong, please review and abide by the [Code of Conduct](https://github.com/statamic/cms/wiki/Code-of-Conduct).
-
-
-## Important Links
-
-- [Statamic Main Site](https://statamic.com)
-- [Statamic Documentation][docs]
-- [Statamic Core Package Repo][cms-repo]
-- [Statamic Migrator](https://github.com/statamic/migrator)
-- [Statamic Discord][discord]
-
-[docs]: https://statamic.dev/
-[discord]: https://statamic.com/discord
-[contribution]: https://github.com/statamic/cms/blob/master/CONTRIBUTING.md
-[cms-repo]: https://github.com/statamic/cms
+![After](./screenshots/after.png)
